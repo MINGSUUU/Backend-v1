@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mingsuu.ColPoP.global.redis.util.RedisUtil;
+import mingsuu.ColPoP.global.security.exception.TokenExpiredException;
 import mingsuu.ColPoP.global.security.jwt.TokenProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final TokenProvider tokenProvider;
 
+    private final RedisUtil redisUtil;
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -32,9 +36,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (token != null && !token.isBlank()) {
 
-            /*if (redisUtil.hasKeyBlackList(token)) {
+            if (redisUtil.hasKeyBlackList(token)) {
                 throw new TokenExpiredException();
-            }*/
+            }
 
             Authentication authentication = tokenProvider.authentication(token);
 
