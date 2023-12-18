@@ -42,6 +42,7 @@ public class SecurityConfig {
                 //인가 정책
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/auth/signup").permitAll()
+                .requestMatchers("/auth/login").permitAll()
                 .anyRequest().denyAll();
         http
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
