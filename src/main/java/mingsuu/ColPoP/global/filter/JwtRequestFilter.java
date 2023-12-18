@@ -1,4 +1,4 @@
-package mingsuu.ColPoP.global.security.jwt.filter;
+package mingsuu.ColPoP.global.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

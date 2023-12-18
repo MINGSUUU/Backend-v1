@@ -5,17 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@EnableCaching
-@EnableScheduling
-@EnableJpaAuditing
-@EnableJpaRepositories
 @SpringBootApplication
-@ConfigurationPropertiesScan
 @EnableConfigurationProperties
+@EnableCaching
+@ConfigurationPropertiesScan
+@EnableJpaRepositories
+@EnableWebMvc
 public class ColPoPApplication {
 
 	public static void main(String[] args) {
@@ -23,3 +21,4 @@ public class ColPoPApplication {
 	}
 
 }
+
