@@ -15,7 +15,9 @@ public enum ErrorCode {
     TOKEN_NOT_VALID("토큰이 유효 하지 않습니다.", 401),
 
     //USER
-    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다.", 403);
+    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다.", 403),
+    USER_NOT_FOUND("유저를 찾을 수 없습니다.", 403),
+    MISMATCH_PASSWORD("비밀번호가 맞지 않습니다.", 403);
 
 
     private final String message;
