@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import mingsuu.ColPoP.global.security.exception.TokenExpiredException;
+import mingsuu.ColPoP.global.security.exception.TokenNotVaildException;
 import mingsuu.ColPoP.global.security.jwt.properties.JwtProperties;
 import mingsuu.ColPoP.global.security.jwt.properties.TokenTimeProperties;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -125,13 +127,10 @@ public class TokenProvider {
 
         } catch (ExpiredJwtException e) {
 
-            //throw new TokenExpiredException();
-            throw new RuntimeException();
-
+            throw new TokenExpiredException();
         } catch (JwtException e) {
 
-            //throw new TokenNotVaildException();
-            throw new RuntimeException();
+            throw new TokenNotVaildException();
         }
     }
 
