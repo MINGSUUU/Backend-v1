@@ -6,6 +6,7 @@ import mingsuu.ColPoP.domain.auth.presentation.dto.request.SignUpRequest;
 import mingsuu.ColPoP.domain.auth.presentation.dto.response.LoginResponse;
 import mingsuu.ColPoP.domain.auth.presentation.dto.response.NewTokenResponse;
 import mingsuu.ColPoP.domain.auth.service.LoginService;
+import mingsuu.ColPoP.domain.auth.service.LogoutService;
 import mingsuu.ColPoP.domain.auth.service.ReIssueTokenService;
 import mingsuu.ColPoP.domain.auth.service.SignUpService;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,8 @@ public class AuthController {
 
     private final ReIssueTokenService reIssueTokenService;
 
+    private final LogoutService logoutService;
+
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody SignUpRequest signUpRequest) {
         signUpService.execute(signUpRequest);
@@ -39,5 +42,14 @@ public class AuthController {
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("Refresh-token") String refreshToken) {
         NewTokenResponse newTokenResponse = reIssueTokenService.execute(refreshToken);
         return new ResponseEntity<>(newTokenResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/logout")
+    public ResponseEntity<Void> logout(
+            @RequestHeader("Access-token") String accessToken,
+            @RequestHeader("Refresh-token") String refreshToken)
+    {
+        logoutService.execute(accessToken, refreshToken);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
