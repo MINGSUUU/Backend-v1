@@ -12,7 +12,11 @@ public enum ErrorCode {
 
     //TOKEN
     TOKEN_IS_EXPIRED("토큰이 만료 되었습니다.", 401),
-    TOKEN_NOT_VALID("토큰이 유효 하지 않습니다.", 401);
+    TOKEN_NOT_VALID("토큰이 유효 하지 않습니다.", 401),
+
+    //USER
+    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다.", 403);
+
 
     private final String message;
     private final int status;
