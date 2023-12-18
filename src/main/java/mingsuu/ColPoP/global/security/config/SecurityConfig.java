@@ -2,7 +2,7 @@ package mingsuu.ColPoP.global.security.config;
 
 
 import lombok.RequiredArgsConstructor;
-import mingsuu.ColPoP.global.security.jwt.filter.JwtRequestFilter;
+import mingsuu.ColPoP.global.filter.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,7 +24,7 @@ public class SecurityConfig {
     private final JwtRequestFilter jwtRequestFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
@@ -41,8 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 //인가 정책
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/oauth2/**").permitAll()
-                .requestMatchers("/auth").authenticated()
+                .requestMatchers("/auth/signup").permitAll()
                 .anyRequest().denyAll();
         http
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
