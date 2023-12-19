@@ -1,11 +1,13 @@
 package mingsuu.ColPoP.domain.board.presentation;
 
 import lombok.RequiredArgsConstructor;
+import mingsuu.ColPoP.domain.board.presentation.dto.request.CommentRequest;
 import mingsuu.ColPoP.domain.board.presentation.dto.request.CreateBoardRequest;
 import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardDetailResponse;
 import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardListResponse;
 import mingsuu.ColPoP.domain.board.service.BoardDetailService;
 import mingsuu.ColPoP.domain.board.service.BoardListService;
+import mingsuu.ColPoP.domain.board.service.CommentService;
 import mingsuu.ColPoP.domain.board.service.CreateBoardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ public class BoardController {
     private final BoardListService boardListService;
 
     private final BoardDetailService boardDetailService;
+
+    private final CommentService commentService;
 
     @PostMapping("/auth")
     public ResponseEntity<Void> create(@RequestBody CreateBoardRequest createBoardRequest) {
@@ -38,5 +42,11 @@ public class BoardController {
     public ResponseEntity<BoardDetailResponse> detail(@PathVariable Long boardId) {
         BoardDetailResponse boardDetailResponse = boardDetailService.execute(boardId);
         return new ResponseEntity<>(boardDetailResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/auth/{boardId}")
+    public ResponseEntity<Void> comment(@PathVariable Long boardId, @RequestBody CommentRequest commentRequest) {
+        commentService.execute(boardId, commentRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
