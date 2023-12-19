@@ -17,7 +17,10 @@ public enum ErrorCode {
     //USER
     ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다.", 403),
     USER_NOT_FOUND("유저를 찾을 수 없습니다.", 403),
-    MISMATCH_PASSWORD("비밀번호가 맞지 않습니다.", 403);
+    MISMATCH_PASSWORD("비밀번호가 맞지 않습니다.", 403),
+
+    //BOARD
+    BOARD_NOT_FOUND("게시글을 찾을 수 없습니다.", 403);
 
 
     private final String message;
