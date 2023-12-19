@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import mingsuu.ColPoP.domain.user.entity.User;
 import mingsuu.ColPoP.global.entity.BaseTimeEntity;
 
 import java.time.LocalDate;
@@ -29,8 +30,9 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, length = 1000)
     private String content;
 
-    @Column(nullable = false)
-    private String author;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     @Column(nullable = false)
     private LocalDate endDate;
