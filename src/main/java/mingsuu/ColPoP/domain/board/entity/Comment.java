@@ -2,14 +2,15 @@ package mingsuu.ColPoP.domain.board.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import mingsuu.ColPoP.global.entity.BaseTimeEntity;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comment extends BaseTimeEntity {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,12 @@ public class Comment extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String author;
+
+    @Column(nullable = false)
+    private String profileUrl;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")

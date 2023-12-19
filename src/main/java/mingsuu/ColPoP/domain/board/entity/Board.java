@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import mingsuu.ColPoP.domain.user.entity.User;
-import mingsuu.ColPoP.global.entity.BaseTimeEntity;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,7 +16,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board extends BaseTimeEntity {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +32,9 @@ public class Board extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User author;
+
+    @Column(nullable = false)
+    private LocalDate startDate;
 
     @Column(nullable = false)
     private LocalDate endDate;
