@@ -5,10 +5,7 @@ import mingsuu.ColPoP.domain.board.presentation.dto.request.CommentRequest;
 import mingsuu.ColPoP.domain.board.presentation.dto.request.CreateBoardRequest;
 import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardDetailResponse;
 import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardListResponse;
-import mingsuu.ColPoP.domain.board.service.BoardDetailService;
-import mingsuu.ColPoP.domain.board.service.BoardListService;
-import mingsuu.ColPoP.domain.board.service.CommentService;
-import mingsuu.ColPoP.domain.board.service.CreateBoardService;
+import mingsuu.ColPoP.domain.board.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +22,8 @@ public class BoardController {
     private final BoardDetailService boardDetailService;
 
     private final CommentService commentService;
+
+    private final MyBoardService myBoardService;
 
     @PostMapping("/auth")
     public ResponseEntity<Void> create(@RequestBody CreateBoardRequest createBoardRequest) {
@@ -48,5 +47,11 @@ public class BoardController {
     public ResponseEntity<Void> comment(@PathVariable Long boardId, @RequestBody CommentRequest commentRequest) {
         commentService.execute(boardId, commentRequest);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/auth/mypage")
+    public ResponseEntity<BoardListResponse> myBoardList() {
+        BoardListResponse boardListResponse = myBoardService.execute();
+        return new ResponseEntity<>(boardListResponse, HttpStatus.OK);
     }
 }
