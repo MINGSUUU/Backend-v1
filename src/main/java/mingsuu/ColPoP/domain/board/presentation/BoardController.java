@@ -2,7 +2,9 @@ package mingsuu.ColPoP.domain.board.presentation;
 
 import lombok.RequiredArgsConstructor;
 import mingsuu.ColPoP.domain.board.presentation.dto.request.CreateBoardRequest;
+import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardDetailResponse;
 import mingsuu.ColPoP.domain.board.presentation.dto.response.BoardListResponse;
+import mingsuu.ColPoP.domain.board.service.BoardDetailService;
 import mingsuu.ColPoP.domain.board.service.BoardListService;
 import mingsuu.ColPoP.domain.board.service.CreateBoardService;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ public class BoardController {
 
     private final BoardListService boardListService;
 
+    private final BoardDetailService boardDetailService;
+
     @PostMapping("/auth")
     public ResponseEntity<Void> create(@RequestBody CreateBoardRequest createBoardRequest) {
         createBoardService.execute(createBoardRequest);
@@ -28,5 +32,11 @@ public class BoardController {
     public ResponseEntity<BoardListResponse> list() {
         BoardListResponse boardListResponse = boardListService.execute();
         return new ResponseEntity<>(boardListResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/auth/{boardId}")
+    public ResponseEntity<BoardDetailResponse> detail(@PathVariable Long boardId) {
+        BoardDetailResponse boardDetailResponse = boardDetailService.execute(boardId);
+        return new ResponseEntity<>(boardDetailResponse, HttpStatus.OK);
     }
 }
