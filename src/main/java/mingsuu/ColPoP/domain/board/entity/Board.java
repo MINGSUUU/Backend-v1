@@ -42,7 +42,7 @@ public class Board {
     @ElementCollection
     @CollectionTable(name = "board_fieldList", joinColumns = @JoinColumn(name = "board_id"))
     @Column(name = "field")
-    @Size(max = 4)
+    @Size(max = 5)
     @NotEmpty
     @Builder.Default
     private Set<String> fieldList = new HashSet<>();
