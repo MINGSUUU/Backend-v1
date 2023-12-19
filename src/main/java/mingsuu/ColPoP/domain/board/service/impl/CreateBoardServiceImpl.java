@@ -29,7 +29,7 @@ public class CreateBoardServiceImpl implements CreateBoardService {
         Board board = Board.builder()
                 .title(createBoardRequest.getTitle())
                 .content(createBoardRequest.getContent())
-                .author(user.getName())
+                .author(user)
                 .endDate(createBoardRequest.getEndDate())
                 .fieldList(new HashSet<>(createBoardRequest.getFieldList()))
                 .build();
