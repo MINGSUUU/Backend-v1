@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/login").permitAll()
                 .requestMatchers("/auth/reissue").authenticated()
                 .requestMatchers("/auth/logout").authenticated()
+                .requestMatchers("/board/**").authenticated()
                 .anyRequest().denyAll();
         http
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

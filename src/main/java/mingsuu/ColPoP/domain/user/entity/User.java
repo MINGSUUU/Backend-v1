@@ -17,13 +17,16 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String profileUrl;
 
+    @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
