@@ -23,7 +23,7 @@ public class CommentResponse {
 
     private String profileUrl;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createDate;
 
     public static CommentResponse toResponse(Comment comment) {
